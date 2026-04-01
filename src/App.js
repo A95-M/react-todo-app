@@ -8,6 +8,13 @@ function App() {
   // State to store input value
   const [input, setInput] = useState('');
 
+  // Function to add todo
+  const addTodo = () => {
+    if (input.trim() === '') return;
+    setTodos([...todos, input]);
+    setInput('');
+  };
+
   return (
     <div>
       <h1>React Todo App</h1>
@@ -19,9 +26,13 @@ function App() {
         onChange={(e) => setInput(e.target.value)}
       />
 
-      <button>Add Todo</button>
+      <button onClick={addTodo}>Add Todo</button>
 
-      <ul></ul>
+      <ul>
+        {todos.map((todo, index) => (
+          <li key={index}>{todo}</li>
+        ))}
+      </ul>
     </div>
   );
 }
