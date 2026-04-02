@@ -15,6 +15,11 @@ function App() {
     setInput('');
   };
 
+  // Function to delete todo
+  const deleteTodo = (indexToDelete) => {
+  setTodos(todos.filter((_, index) => index !== indexToDelete));
+  };
+
   return (
     <div>
       <h1>React Todo App</h1>
@@ -28,11 +33,16 @@ function App() {
 
       <button onClick={addTodo}>Add Todo</button>
 
-      <ul>
-        {todos.map((todo, index) => (
-          <li key={index}>{todo}</li>
-        ))}
-      </ul>
+    <ul>
+  {todos.map((todo, index) => (
+    <li key={index}>
+      {todo}
+      <button onClick={() => deleteTodo(index)}>
+        Delete
+      </button>
+    </li>
+  ))}
+</ul>
     </div>
   );
 }
