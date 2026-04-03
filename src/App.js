@@ -11,7 +11,7 @@ function App() {
   // Function to add todo
   const addTodo = () => {
     if (input.trim() === '') return;
-    setTodos([...todos, input]);
+    setTodos([...todos, { text: input, completed: false }]);
     setInput('');
   };
 
@@ -19,6 +19,16 @@ function App() {
   const deleteTodo = (indexToDelete) => {
   setTodos(todos.filter((_, index) => index !== indexToDelete));
   };
+
+  const toggleTodo = (indexToToggle) => {
+  setTodos(
+    todos.map((todo, index) =>
+      index === indexToToggle
+        ? { ...todo, completed: !todo.completed }
+        : todo
+    )
+  );
+};
 
   return (
     <div>
@@ -35,12 +45,21 @@ function App() {
 
     <ul>
   {todos.map((todo, index) => (
-    <li key={index}>
-      {todo}
-      <button onClick={() => deleteTodo(index)}>
-        Delete
-      </button>
-    </li>
+  <li key={index}>
+  <span
+    onClick={() => toggleTodo(index)}
+    style={{
+      textDecoration: todo.completed ? "line-through" : "none",
+      cursor: "pointer"
+    }}
+  >
+    {todo.text}
+  </span>
+
+  <button onClick={() => deleteTodo(index)}>
+    Delete
+  </button>
+</li>
   ))}
 </ul>
     </div>
