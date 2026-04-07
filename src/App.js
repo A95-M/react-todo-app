@@ -1,12 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function App() {
 
   // State to store todos
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState(() => {
+  try {
+    const saved = localStorage.getItem("todos");
+    return saved ? JSON.parse(saved) : [];
+  } catch {
+    return [];
+  }
+});
 
   // State to store input value
   const [input, setInput] = useState('');
+
+  // Save todos to localStorage whenever todos change
+  useEffect(() => {
+  localStorage.setItem("todos", JSON.stringify(todos));
+}, [todos]);
 
   // Function to add todo
   const addTodo = () => {
@@ -20,6 +32,7 @@ function App() {
   setTodos(todos.filter((_, index) => index !== indexToDelete));
   };
 
+  // Function to toggle completed status
   const toggleTodo = (indexToToggle) => {
   setTodos(
     todos.map((todo, index) =>
@@ -34,32 +47,32 @@ function App() {
     <div>
       <h1>React Todo App</h1>
 
-      <input 
-        type="text" 
-        placeholder="Enter a todo"
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-      />
-
-      <button onClick={addTodo}>Add Todo</button>
-
+      <input   
+        type="text"   
+        placeholder="Enter a todo"  
+        value={input}  
+        onChange={(e) => setInput(e.target.value)}  
+      />  
+  
+      <button onClick={addTodo}>Add Todo</button>  
+  
     <ul>
   {todos.map((todo, index) => (
-  <li key={index}>
-  <span
-    onClick={() => toggleTodo(index)}
-    style={{
-      textDecoration: todo.completed ? "line-through" : "none",
-      cursor: "pointer"
-    }}
-  >
-    {todo.text}
-  </span>
+    <li key={index}>
+      <span
+        onClick={() => toggleTodo(index)}
+        style={{
+          textDecoration: todo.completed ? "line-through" : "none",
+          cursor: "pointer"
+        }}
+      >
+        {todo.text}
+      </span>
 
-  <button onClick={() => deleteTodo(index)}>
-    Delete
-  </button>
-</li>
+      <button onClick={() => deleteTodo(index)}>
+        Delete
+      </button>
+    </li>
   ))}
 </ul>
     </div>
