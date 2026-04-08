@@ -16,6 +16,9 @@ function App() {
   // State to store input value
   const [input, setInput] = useState('');
 
+  // State to store current filter (all, active, completed)
+  const [filter, setFilter] = useState("all");
+
   // Save todos to localStorage whenever todos change
   useEffect(() => {
   localStorage.setItem("todos", JSON.stringify(todos));
@@ -54,6 +57,12 @@ const editTodo = (indexToEdit, newText) => {
   );
 };
 
+const filteredTodos = todos.filter((todo) => {
+  if (filter === "active") return !todo.completed;
+  if (filter === "completed") return todo.completed;
+  return true;
+});
+
   return (
     <div>
       <h1>React Todo App</h1>
@@ -65,10 +74,16 @@ const editTodo = (indexToEdit, newText) => {
         onChange={(e) => setInput(e.target.value)}  
       />  
   
-      <button onClick={addTodo}>Add Todo</button>  
+      <button onClick={addTodo}>Add Todo</button>
+
+      <div>
+  <button onClick={() => setFilter("all")}>All</button>
+  <button onClick={() => setFilter("active")}>Active</button>
+  <button onClick={() => setFilter("completed")}>Completed</button>
+</div>  
   
     <ul>
-  {todos.map((todo, index) => (
+    {filteredTodos.map((todo, index) => (
     <TodoItem
       key={index}
       todo={todo}
