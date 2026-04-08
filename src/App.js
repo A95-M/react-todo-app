@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import TodoItem from "./components/TodoItem";
 
 function App() {
 
@@ -58,21 +59,13 @@ function App() {
   
     <ul>
   {todos.map((todo, index) => (
-    <li key={index}>
-      <span
-        onClick={() => toggleTodo(index)}
-        style={{
-          textDecoration: todo.completed ? "line-through" : "none",
-          cursor: "pointer"
-        }}
-      >
-        {todo.text}
-      </span>
-
-      <button onClick={() => deleteTodo(index)}>
-        Delete
-      </button>
-    </li>
+    <TodoItem
+      key={index}
+      todo={todo}
+      index={index}
+      toggleTodo={toggleTodo}
+      deleteTodo={deleteTodo}
+    />
   ))}
 </ul>
     </div>
