@@ -44,6 +44,16 @@ function App() {
   );
 };
 
+const editTodo = (indexToEdit, newText) => {
+  setTodos(
+    todos.map((todo, index) =>
+      index === indexToEdit
+        ? { ...todo, text: newText }
+        : todo
+    )
+  );
+};
+
   return (
     <div>
       <h1>React Todo App</h1>
@@ -65,6 +75,7 @@ function App() {
       index={index}
       toggleTodo={toggleTodo}
       deleteTodo={deleteTodo}
+      editTodo={editTodo}
     />
   ))}
 </ul>

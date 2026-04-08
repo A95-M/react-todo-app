@@ -1,6 +1,6 @@
 import React from "react";
 
-function TodoItem({ todo, index, toggleTodo, deleteTodo }) {
+function TodoItem({ todo, index, toggleTodo, deleteTodo, editTodo }) {
   return (
     <li>
       <span
@@ -16,6 +16,17 @@ function TodoItem({ todo, index, toggleTodo, deleteTodo }) {
       <button onClick={() => deleteTodo(index)}>
         Delete
       </button>
+
+      <button
+  onClick={() => {
+    const newText = prompt("Edit your todo:", todo.text);
+    if (newText !== null && newText.trim() !== "") {
+      editTodo(index, newText);
+    }
+  }}
+>
+  Edit
+</button>
     </li>
   );
 }
