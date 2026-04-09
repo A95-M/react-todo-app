@@ -36,6 +36,12 @@ function App() {
   setTodos(todos.filter((_, index) => index !== indexToDelete));
   };
 
+  // Function to clear all completed todos
+  const clearCompleted = () => {
+    setTodos(todos.filter((todo) => !
+    todo.completed));
+  };
+
   // Function to toggle completed status
   const toggleTodo = (indexToToggle) => {
   setTodos(
@@ -80,7 +86,11 @@ const filteredTodos = todos.filter((todo) => {
   <button onClick={() => setFilter("all")}>All</button>
   <button onClick={() => setFilter("active")}>Active</button>
   <button onClick={() => setFilter("completed")}>Completed</button>
-</div>  
+</div> 
+
+<button onClick={clearCompleted}>
+  Clear Completed
+</button>
   
     <ul>
     {filteredTodos.map((todo, index) => (
