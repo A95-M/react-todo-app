@@ -69,43 +69,75 @@ const filteredTodos = todos.filter((todo) => {
   return true;
 });
 
-  return (
-    <div>
-      <h1>React Todo App</h1>
+return (
+  <div className="min-h-screen bg-gray-100 flex flex-col items-center pt-10">
+    
+    <h1 className="text-3xl font-bold mb-6">
+      React Todo App
+    </h1>
 
-      <input   
-        type="text"   
-        placeholder="Enter a todo"  
-        value={input}  
-        onChange={(e) => setInput(e.target.value)}  
-      />  
-  
-      <button onClick={addTodo}>Add Todo</button>
+    <div className="flex mb-4">
+      <input
+        className="border p-2 rounded mr-2"
+        type="text"
+        placeholder="Enter a todo"
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+      />
 
-      <div>
-  <button onClick={() => setFilter("all")}>All</button>
-  <button onClick={() => setFilter("active")}>Active</button>
-  <button onClick={() => setFilter("completed")}>Completed</button>
-</div> 
-
-<button onClick={clearCompleted}>
-  Clear Completed
-</button>
-  
-    <ul>
-    {filteredTodos.map((todo, index) => (
-    <TodoItem
-      key={index}
-      todo={todo}
-      index={index}
-      toggleTodo={toggleTodo}
-      deleteTodo={deleteTodo}
-      editTodo={editTodo}
-    />
-  ))}
-</ul>
+      <button
+        onClick={addTodo}
+        className="bg-blue-500 text-white px-4 py-2 rounded"
+      >
+        Add Todo
+      </button>
     </div>
-  );
+
+    <div className="mb-4">
+      <button
+        className="mr-2 px-3 py-1 border rounded"
+        onClick={() => setFilter("all")}
+      >
+        All
+      </button>
+
+      <button
+        className="mr-2 px-3 py-1 border rounded"
+        onClick={() => setFilter("active")}
+      >
+        Active
+      </button>
+
+      <button
+        className="px-3 py-1 border rounded"
+        onClick={() => setFilter("completed")}
+      >
+        Completed
+      </button>
+    </div>
+
+    <button
+      onClick={clearCompleted}
+      className="mb-4 bg-gray-700 text-white px-3 py-1 rounded"
+    >
+      Clear Completed
+    </button>
+
+    <ul>
+      {filteredTodos.map((todo, index) => (
+        <TodoItem
+          key={index}
+          todo={todo}
+          index={index}
+          toggleTodo={toggleTodo}
+          deleteTodo={deleteTodo}
+          editTodo={editTodo}
+        />
+      ))}
+    </ul>
+
+  </div>
+);
 }
 
 export default App;
