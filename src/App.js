@@ -69,6 +69,9 @@ const filteredTodos = todos.filter((todo) => {
   return true;
 });
 
+const remainingTodos = todos.filter(todo => !
+  todo.completed).length;
+
 return (
   <div className="min-h-screen bg-gray-100 flex flex-col items-center pt-10">
     
@@ -135,6 +138,10 @@ return (
         />
       ))}
     </ul>
+
+    <p className="mt-4 text-gray-600 text-sm">
+      {remainingTodos} {remainingTodos === 1 ? "task" : "tasks"} left
+    </p>
 
   </div>
 );
