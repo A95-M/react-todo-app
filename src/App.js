@@ -27,7 +27,7 @@ function App() {
   // Function to add todo
   const addTodo = () => {
     if (input.trim() === '') return;
-    setTodos([...todos, { text: input, completed: false }]);
+    setTodos([...todos, { id: Date.now(), text: input, completed: false }]);
     setInput('');
   };
 
@@ -123,7 +123,7 @@ return (
       Clear Completed
     </button>
 
-    <ul>
+    <ul className="w-full max-w-md">
       {filteredTodos.map((todo, index) => (
         <TodoItem
           key={index}
