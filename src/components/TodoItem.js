@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 
 function TodoItem({ todo, index, toggleTodo, deleteTodo, editTodo }) {
+
+  const [isEditing, setIsEditing] = useState(false);
+  const [editText, setEditText] = useState(todo.text);
+
 return (
   <li className="flex items-center justify-between bg-white p-3 mb-2 rounded shadow">
 
@@ -10,17 +14,38 @@ return (
     todo.completed ? "line-through text-gray-400" : ""
   }`}
 >
-  {todo.text}
+  {isEditing ? (
+    <input
+      value={editText}
+      onChange={(e) => setEditText(e.target.value)}
+      onBlur={() => {
+        if (editText.trim() !== "") {
+          editTodo(index, editText);
+        }
+        setIsEditing(false);
+      }}
+      onKeyDown={(e) => {
+        if (e.key === "Enter") {
+          if (editText.trim() !== "") {
+            editTodo(index, editText);
+          }
+          setIsEditing(false);
+        }
+      }}
+      autoFocus
+      className="border p-1 w-full"
+    />
+  ) : (
+    todo.text
+  )}
 </div>
 
     <div className="flex gap-2 ml-4">
       <button
         onClick={() => {
-  const newText = prompt("Edit your todo:", todo.text);
-  if (newText !== null && newText.trim() !== "") {
-    editTodo(index, newText);
-  }
-}}
+          setIsEditing(true);
+          setEditText(todo.text);
+        }}
         className="bg-yellow-400 px-3 py-1 text-sm rounded"
       >
         Edit
