@@ -73,15 +73,15 @@ const remainingTodos = todos.filter(todo => !
   todo.completed).length;
 
 return (
-  <div className="min-h-screen bg-gray-100 flex flex-col items-center pt-10">
+  <div className="min-h-screen bg-gray-100 flex flex-col items-center pt-10 px-4">
     
     <h1 className="text-3xl font-bold mb-6">
       React Todo App
     </h1>
 
-    <div className="flex mb-4">
+    <div className="flex flex-col sm:flex-row mb-4 w-full max-w-md gap-2">
       <input
-        className="border p-2 rounded mr-2"
+        className="border p-2 rounded w-full sm:w-auto"
         type="text"
         placeholder="Enter a todo"
         value={input}
@@ -90,7 +90,7 @@ return (
 
       <button
         onClick={addTodo}
-        className="bg-blue-500 text-white px-4 py-2 rounded"
+        className="bg-blue-500 text-white px-4 py-2 rounded w-full sm:w-auto"
       >
         Add Todo
       </button>
@@ -132,7 +132,7 @@ return (
       Clear Completed
     </button>
 
-    <ul className="w-full max-w-md">
+    <ul className="w-full max-w-md px-2 sm:px-0">
       {filteredTodos.map((todo, index) => (
         <TodoItem
           key={index}

@@ -6,7 +6,8 @@ function TodoItem({ todo, index, toggleTodo, deleteTodo, editTodo }) {
   const [editText, setEditText] = useState(todo.text);
 
 return (
-  <li className="flex items-center justify-between bg-white p-3 mb-2 rounded shadow">
+  <li className="flex flex-col sm:flex-row sm:items-center justify-between bg-white p-3 mb-2 
+  rounded shadow gap-2">
 
     <div
   onClick={() => toggleTodo(index)}
