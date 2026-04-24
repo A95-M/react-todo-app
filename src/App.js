@@ -149,6 +149,10 @@ return (
       {remainingTodos} {remainingTodos === 1 ? "task" : "tasks"} left
     </p>
 
+    <footer className="mt-10 text-xs text-gray-500 text-center">
+  © {new Date().getFullYear()} React Todo App • Built with React & Tailwind
+</footer>
+
   </div>
 );
 }
