@@ -97,27 +97,33 @@ return (
     </div>
 
     <div className="mb-4">
-      <button
-        className="mr-2 px-3 py-1 border rounded"
-        onClick={() => setFilter("all")}
-      >
-        All
-      </button>
+  <button
+    className={`mr-2 px-3 py-1 border rounded ${
+      filter === "all" ? "bg-blue-500 text-white" : ""
+    }`}
+    onClick={() => setFilter("all")}
+  >
+    All
+  </button>
 
-      <button
-        className="mr-2 px-3 py-1 border rounded"
-        onClick={() => setFilter("active")}
-      >
-        Active
-      </button>
+  <button
+    className={`mr-2 px-3 py-1 border rounded ${
+      filter === "active" ? "bg-blue-500 text-white" : ""
+    }`}
+    onClick={() => setFilter("active")}
+  >
+    Active
+  </button>
 
-      <button
-        className="px-3 py-1 border rounded"
-        onClick={() => setFilter("completed")}
-      >
-        Completed
-      </button>
-    </div>
+  <button
+    className={`px-3 py-1 border rounded ${
+      filter === "completed" ? "bg-blue-500 text-white" : ""
+    }`}
+    onClick={() => setFilter("completed")}
+  >
+    Completed
+  </button>
+</div>
 
     <button
       onClick={clearCompleted}
