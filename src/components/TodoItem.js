@@ -6,8 +6,11 @@ function TodoItem({ todo, index, toggleTodo, deleteTodo, editTodo }) {
   const [editText, setEditText] = useState(todo.text);
 
 return (
-  <li className="flex flex-col sm:flex-row sm:items-center justify-between bg-white p-3 mb-2 
-  rounded shadow gap-2">
+  <li className={`flex flex-col sm:flex-row sm:items-center justify-between p-3 mb-2 rounded shadow gap-2 transition ${
+  todo.completed
+    ? "bg-green-100 text-black"
+    : "bg-white text-black dark:bg-gray-800 dark:text-white"
+}`}>
 
     <div
   onClick={() => toggleTodo(index)}
@@ -47,7 +50,7 @@ return (
           setIsEditing(true);
           setEditText(todo.text);
         }}
-        className="bg-yellow-400 px-3 py-1 text-sm rounded"
+        className="bg-yellow-400 text-black px-3 py-1 text-sm rounded"
       >
         Edit
       </button>

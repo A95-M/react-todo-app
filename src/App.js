@@ -19,6 +19,9 @@ function App() {
   // State to store current filter (all, active, completed)
   const [filter, setFilter] = useState("all");
 
+  // 🌙 Dark Mode state
+  const [darkMode, setDarkMode] = useState(false);
+
   // Save todos to localStorage whenever todos change
   useEffect(() => {
   localStorage.setItem("todos", JSON.stringify(todos));
@@ -73,11 +76,20 @@ const remainingTodos = todos.filter(todo => !
   todo.completed).length;
 
 return (
-  <div className="min-h-screen bg-gray-100 flex flex-col items-center pt-10 px-4">
+  <div className={`min-h-screen flex flex-col items-center pt-10 px-4 transition ${
+  darkMode ? "bg-gray-900 text-white" : "bg-gray-100 text-black"
+}`}>
     
     <h1 className="text-3xl font-bold mb-6">
       React Todo App
     </h1>
+
+    <button
+  onClick={() => setDarkMode(!darkMode)}
+  className="mb-4 px-3 py-1 text-sm rounded bg-gray-800 text-white"
+>
+  {darkMode ? "Light Mode ☀️" : "Dark Mode 🌙"}
+</button>
 
     <div className="flex flex-col sm:flex-row mb-4 w-full max-w-md gap-2">
       <input
