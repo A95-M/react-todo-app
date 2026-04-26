@@ -95,7 +95,10 @@ return (
 
     <div className="flex flex-col sm:flex-row justify-center mb-4 w-full gap-2">
       <input
-        className="border p-2 rounded w-full sm:w-auto"
+        className="border p-2 rounded w-full sm:w-auto 
+        bg-white text-black 
+        dark:bg-gray-800 dark:text-white dark:border-gray-600 
+        placeholder-gray-400 dark:placeholder-gray-500"
         type="text"
         placeholder="Enter a todo"
         value={input}
