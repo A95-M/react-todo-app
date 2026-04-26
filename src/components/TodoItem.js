@@ -13,7 +13,9 @@ return (
 }`}>
 
     <div
-  onClick={() => toggleTodo(index)}
+  onClick={() => {
+  if (!isEditing) toggleTodo(index);
+}}
   className={`flex-1 cursor-pointer break-words pr-4 min-w-0 ${
     todo.completed ? "line-through text-gray-400" : ""
   }`}

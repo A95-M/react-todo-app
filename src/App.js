@@ -84,14 +84,16 @@ return (
       React Todo App
     </h1>
 
+    <div className="w-full max-w-md">
+
     <button
   onClick={() => setDarkMode(!darkMode)}
-  className="mb-4 px-3 py-1 text-sm rounded bg-gray-800 text-white"
+  className="mb-4 w-full text-center px-3 py-1 text-sm rounded bg-gray-800 text-white"
 >
   {darkMode ? "Light Mode ☀️" : "Dark Mode 🌙"}
 </button>
 
-    <div className="flex flex-col sm:flex-row mb-4 w-full max-w-md gap-2">
+    <div className="flex flex-col sm:flex-row justify-center mb-4 w-full gap-2">
       <input
         className="border p-2 rounded w-full sm:w-auto"
         type="text"
@@ -108,7 +110,7 @@ return (
       </button>
     </div>
 
-    <div className="mb-4">
+    <div className="mb-4 w-full flex justify-center gap-2">
   <button
     className={`mr-2 px-3 py-1 border rounded ${
       filter === "all" ? "bg-blue-500 text-white" : ""
@@ -139,12 +141,12 @@ return (
 
     <button
       onClick={clearCompleted}
-      className="mb-4 bg-gray-700 text-white px-3 py-1 rounded"
+      className="mb-4 w-full bg-gray-700 text-white px-3 py-1 rounded"
     >
       Clear Completed
     </button>
 
-    <ul className="w-full max-w-md px-2 sm:px-0">
+    <ul className="w-full px-2 sm:px-0">
       {filteredTodos.map((todo, index) => (
         <TodoItem
           key={index}
@@ -164,6 +166,8 @@ return (
     <footer className="mt-10 text-xs text-gray-500 text-center">
   © {new Date().getFullYear()} React Todo App • Built with React & Tailwind
 </footer>
+
+  </div>
 
   </div>
 );
