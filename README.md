@@ -1,6 +1,13 @@
-📝 React Todo App
+#📝 React Todo App
+
 A clean and responsive Todo App built with React and Tailwind CSS.
+
+## 🌐 Live Demo
+
+https://react-todo-app-seven-sable.vercel.app
+
 🚀 Features
+
 ➕ Add new todos
 ✏️ Edit todos inline (without popup)
 ❌ Delete todos
